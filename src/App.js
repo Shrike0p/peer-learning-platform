@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import OnboardingForm from './components/OnboardingForm';
+import ProfileSwipe from './components/ProfileSwipe';
+import StudyScheduler from './components/StudyScheduler';
+import Dashboard from './components/Dashboard';
+import MatchPage from './components/MatchPage';
+import theme from './theme'; // Import the custom theme
+import RoomPage from "./components/RoomPage";
+import './tailwind.css';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />  {/* Apply global background color */}
+      <Router>
+        <Routes>
+          <Route path="/onboarding" element={<OnboardingForm />} />
+          <Route path="/swipe" element={<ProfileSwipe />} />
+          <Route path="/schedule" element={<StudyScheduler />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/match" element={<MatchPage />} />
+          <Route path="/room" element={<RoomPage/>} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
